@@ -14,6 +14,13 @@ Prompts for demographic data for a child in the preschool to grade 12 age range,
 then shows statistics for the selected demographics and links to programs to improve
 outcomes for associated problem areas.
 </p>
+<script type="module">
 
+import * as d3 from "https://cdn.skypack.dev/d3@7";
+
+const div = d3.selectAll("div");
+
+</script>
+<script src="{{url_for('static', filename='js/visualize.js')}}"></script>
 </body>
 </html>
