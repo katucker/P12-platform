@@ -35,4 +35,4 @@ displayed. Depending on your computer configuration, you may need to use
 localhost, instead of the explicit IP address, but still add the port number.
 In other words, use the following:
 
-> https://localhost:5001
+> http://localhost:5001
