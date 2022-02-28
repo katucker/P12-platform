@@ -1,0 +1,7 @@
+---
+applications:
+- name: p12-platform
+  random-route: true
+  buildpacks:
+    - python_buildpack
+  memory: 256M
