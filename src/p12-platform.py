@@ -26,7 +26,14 @@ def helpachild():
 def p12equity():
 	return render_template('p12equity.html')
 
-
+@app.route('/get_stats', methods=['POST'])
+def get_stats():
+	data = request.form
+	age = int(data.get('age'))
+	grade = data.get('grade')
+	raceth = int(data.get('race_ethnicity'))
+	return f'Age {age}<br>Grade {grade}<br>Race/Ethnicity {raceth}<br>'
+	
 if __name__ == "__main__":
 	port = os.getenv('PORT', '5001')
 	app.run(host='0.0.0.0', port=int(port))

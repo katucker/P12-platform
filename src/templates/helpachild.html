@@ -14,6 +14,54 @@ Prompts for demographic data for a child in the preschool to grade 12 age range,
 then shows statistics for the selected demographics and links to programs to improve
 outcomes for associated problem areas.
 </p>
+<form action="/get_stats" method="POST" name="child_description">
+<label for="age" id="age_label">Age</label>
+<select id="age" name="age">
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+</select>
+<label for="grade" id="grade_label">Grade</label>
+<select id="grade" name="grade">
+<option value="preschool" id="preschool">Preschool</option>
+<option value="kindergarden" id="kindergarden">Kindergarden</option>
+<option value="1" id="1">Grade 1</option>
+<option value="2" id="2">Grade 2</option>
+<option value="3" id="3">Grade 3</option>
+<option value="4" id="4">Grade 4</option>
+<option value="5" id="5">Grade 5</option>
+<option value="6" id="6">Grade 6</option>
+<option value="7" id="7">Grade 7</option>
+<option value="8" id="8">Grade 8</option>
+<option value="9" id="9">Grade 9</option>
+<option value="10" id="10">Grade 10</option>
+<option value="11" id="11">Grade 11</option>
+<option value="12" id="12">Grade 12</option>
+</select>
+<label for="race_ethnicity" id="race_ethnicity_label">Race/Ethnicity</label>
+<select id="race_ethnicity" name="race_ethnicity">
+<option value="1" id="alaskan">American Indian or Alaska Native</option>
+<option value="2" id="asian">Asian</option>
+<option value="3" id="black">Black or African American</option>
+<option value="4" id="hispanic">Hispanic/Latino</option>
+<option value="5" id="hawaiian">Native Hawaiian or Other Pacific Islander</option>
+<option value="6" id="white">White</option>
+<option value="7" id="multiple">Two or more races</option>
+</select>
+<input type="submit" name="submit" value="Get Help" id="help_submit">
+</form>
 <script type="module">
 
 import * as d3 from "https://cdn.skypack.dev/d3@7";
