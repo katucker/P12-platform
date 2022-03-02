@@ -28,11 +28,7 @@ def p12equity():
 
 @app.route('/get_stats', methods=['POST'])
 def get_stats():
-	data = request.form
-	age = int(data.get('age'))
-	grade = data.get('grade')
-	raceth = int(data.get('race_ethnicity'))
-	return f'Age {age}<br>Grade {grade}<br>Race/Ethnicity {raceth}<br>'
+	return f"Age {request.form.get('age')}<br>Grade {request.form.get('grade')}<br>Race {request.form.get('race')}<br>Hispanic/Latino {request.form.get('hispanic')}<br>Disability {request.form.get('disability')}<br>Economically Disadvantaged {request.form.get('economic')}<br>Experiencing Homelessness {request.form.get('homeless')}"
 	
 if __name__ == "__main__":
 	port = os.getenv('PORT', '5001')
