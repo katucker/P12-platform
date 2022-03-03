@@ -9,10 +9,10 @@
 </head>
 <body class="w3-light-grey">
 <header>
-<img src="{{url_for('static', filename='img/US-DeptOfEducation-Seal.png')}}" alt="US Department of Education seal" role="banner">
-<h1>
-	Help a child 
-</h1>
+	<img src="{{url_for('static', filename='img/US-DeptOfEducation-Seal.png')}}" alt="US Department of Education seal" role="banner"> 
+	<h1>
+		Help a child 
+	</h1>
 </header>
 <p id="overview" class="w3-text-dark-grey">
 	Describe the child to help in the preschool to grade 12 age range, then click the Get Help button to see related statistics and recommendations. 
@@ -38,6 +38,15 @@
 				<option value="17">17</option>
 				<option value="18">18</option>
 			</select>
+			<div class="w3-card">
+				<label for="gender" id="gender_label">Gender</label> 
+				<input type="radio" id="female" name="gender" value="Female">
+				<label for="female">Female</label> 
+				<input type="radio" id="male" name="gender" value="Male">
+				<label for="male">Male</label> 
+				<input type="radio" id="unspecified" name="gender" value="Not selected" checked>
+				<label for="unspecified">Unspecified</label> 
+			</div>
 			<label for="grade" id="grade_label">Grade</label> 
 			<select id="grade" name="grade" class="w3-select">
 				<option value="preschool" id="preschool">Preschool</option>
@@ -94,8 +103,13 @@
 			<label for="homeless" id="homeless_label">Experiencing Homelessness</label> 
 			<input type="checkbox" name="homeless" id="homeless">
 		</div>
+		<div class="w3-card">
+			<label for="location" id="location_label">Location</label>
+			<input type="text" name="location" placeholder=".e.g. Tulsa, OK" id="location" required>
+			<input type="button" value="Use my current location" onClick="getLocation();">
+		</div>
 		<div>
-			<input type="submit" name="submit" value="Get Help" id="help_submit" class=".w3-btn">
+			<input type="submit" name="submit" value="Get Help" id="help_submit" class="w3-btn">
 		</div>
 	</div>
 </form>
@@ -104,7 +118,7 @@
 	
 	const div = d3.selectAll("div");
 </script>
-<script src="{{url_for('static', filename='js/visualize.js')}}">
-</script>
+<script src="{{url_for('static', filename='js/visualize.js')}}"></script>
+<script src="{{url_for('static', filename='js/locate.js')}}"></script>
 </body>
 </html>
