@@ -30,6 +30,16 @@ def p12equity():
 def get_stats():
 	return f"Age {request.form.get('age')}<br>Grade {request.form.get('grade')}<br>Race {request.form.get('race')}<br>Hispanic/Latino {request.form.get('hispanic')}<br>Disability {request.form.get('disability')}<br>Economically Disadvantaged {request.form.get('economic')}<br>Experiencing Homelessness {request.form.get('homeless')}"
 	
+
+@app.route('/get_area_stats', methods=['POST'])
+def get_area_stats():
+	return f"Metrics for area {request.form.get('location')}"
+	
+@app.route('/get_equity_stats', methods=['POST'])
+def get_equity_stats():
+	return f"Equity metrics for area {request.form.get('location')}"
+	
 if __name__ == "__main__":
+	
 	port = os.getenv('PORT', '5001')
 	app.run(host='0.0.0.0', port=int(port))

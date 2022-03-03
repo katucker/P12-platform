@@ -8,100 +8,117 @@
 	<meta name="generator" content="BBEdit 14.1" />
 </head>
 <body class="w3-light-grey">
-<h1>
-	Help a child
-</h1>
+<header>
+	<img src="{{url_for('static', filename='img/US-DeptOfEducation-Seal.png')}}" alt="US Department of Education seal" role="banner"> 
+	<h1>
+		Help a child 
+	</h1>
+</header>
 <p id="overview" class="w3-text-dark-grey">
-	Prompts for demographic data for a child in the preschool to grade 12 age range, then shows statistics for the selected demographics and links to programs to improve outcomes for associated problem areas. 
+	Describe the child to help in the preschool to grade 12 age range, then click the Get Help button to see related statistics and recommendations. 
 </p>
 <form action="/get_stats" method="POST" name="child_description">
-<div>
-	<label for="age" id="age_label">Age</label> 
-	<select id="age" name="age">
-		<option value="4">4</option>
-		<option value="5">5</option>
-		<option value="6">6</option>
-		<option value="7">7</option>
-		<option value="8">8</option>
-		<option value="9">9</option>
-		<option value="10">10</option>
-		<option value="11">11</option>
-		<option value="12">12</option>
-		<option value="13">13</option>
-		<option value="14">14</option>
-		<option value="15">15</option>
-		<option value="16">16</option>
-		<option value="17">17</option>
-		<option value="18">18</option>
-	</select>
-</div>
-<div>
-	<label for="grade" id="grade_label">Grade</label> 
-	<select id="grade" name="grade">
-		<option value="preschool" id="preschool">Preschool</option>
-		<option value="kindergarden" id="kindergarden">Kindergarden</option>
-		<option value="1" id="1">Grade 1</option>
-		<option value="2" id="2">Grade 2</option>
-		<option value="3" id="3">Grade 3</option>
-		<option value="4" id="4">Grade 4</option>
-		<option value="5" id="5">Grade 5</option>
-		<option value="6" id="6">Grade 6</option>
-		<option value="7" id="7">Grade 7</option>
-		<option value="8" id="8">Grade 8</option>
-		<option value="9" id="9">Grade 9</option>
-		<option value="10" id="10">Grade 10</option>
-		<option value="11" id="11">Grade 11</option>
-		<option value="12" id="12">Grade 12</option>
-	</select>
-</div>
-<div>
-	<label for="race" id="race_label">Race</label> 
-	<select id="race" name="race">
-		<option value="AmericanIndianOrAlaskaNative" id="alaskan">American Indian or Alaska Native</option>
-		<option value="Asian" id="asian">Asian</option>
-		<option value="BlackOrAfricanAmerican" id="black">Black or African American</option>
-		<option value="NativeHawaiianOrOtherPacificIslander" id="hawaiian">Native Hawaiian or Other Pacific Islander</option>
-		<option value="White" id="white">White</option>
-		<option value="DemographicRaceTwoOrMoreRaces" id="multiple">Two or more races</option>
-		<option value="RaceAndEthnicityUnknown" id="unknown">Unknown</option>
-	</select>
-	<label for="hispanic" id="hispanic_label">Hispanic/Latino</label> 
-	<input type="checkbox" name="hispanic" id="hispanic">
-</div>
-<div>
-	<label for="disability" id="disability_label">Disability</label> 
-	<select id="disability" name="disability">
-		<option value="00" id="none">No disability</option>
-		<option value="01" id="blind">Blind or Visual Impairment</option>
-		<option value="02" id="cp">Cerebral Palsy</option>
-		<option value="03" id="chronic">Chronic Illness</option>
-		<option value="04" id="deaf">Deafness or Hearing Impairment</option>
-		<option value="05" id="addict">Drug or Alcohol Addiction</option>
-		<option value="06" id="psychological">Emotionally/Psychologically Disabled</option>
-		<option value="07" id="seizure">Epilepsy or Seizure Disorders</option>
-		<option value="08" id="intellectual">Intellectual Disability</option>
-		<option value="09" id="orthopedic">Orthopedic Impairment</option>
-		<option value="10" id="learning">Specific learning disability</option>
-		<option value="11" id="speach">Speech or Language impairment</option>
-		<option value="99" id="other">Other type of impairment</option>
-	</select>
-</div>
-<div>
-	<label for="economic" id="economic_label">Economically Disadvantaged</label>
-	<input type="checkbox" name="economic" id="economic">
-	<label for="homeless" id="homeless_label">Experiencing Homelessness</label>
-	<input type="checkbox" name="homeless" id="homeless">
-</div>
-<div>
-	<input type="submit" name="submit" value="Get Help" id="help_submit">
-</div>
+	<div id="characteristics" class="w3-container w3-blue-grey w3-text-light-grey">
+		<div class="w3-card">
+			<label for="age" id="age_label">Age</label> 
+			<select id="age" name="age" class="w3-select">
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+			</select>
+			<div class="w3-card">
+				<label for="gender" id="gender_label">Gender</label> 
+				<input type="radio" id="female" name="gender" value="Female">
+				<label for="female">Female</label> 
+				<input type="radio" id="male" name="gender" value="Male">
+				<label for="male">Male</label> 
+				<input type="radio" id="unspecified" name="gender" value="Not selected" checked>
+				<label for="unspecified">Unspecified</label> 
+			</div>
+			<label for="grade" id="grade_label">Grade</label> 
+			<select id="grade" name="grade" class="w3-select">
+				<option value="preschool" id="preschool">Preschool</option>
+				<option value="kindergarden" id="kindergarden">Kindergarden</option>
+				<option value="1" id="1">Grade 1</option>
+				<option value="2" id="2">Grade 2</option>
+				<option value="3" id="3">Grade 3</option>
+				<option value="4" id="4">Grade 4</option>
+				<option value="5" id="5">Grade 5</option>
+				<option value="6" id="6">Grade 6</option>
+				<option value="7" id="7">Grade 7</option>
+				<option value="8" id="8">Grade 8</option>
+				<option value="9" id="9">Grade 9</option>
+				<option value="10" id="10">Grade 10</option>
+				<option value="11" id="11">Grade 11</option>
+				<option value="12" id="12">Grade 12</option>
+			</select>
+		</div>
+		<div class="w3-card">
+			<label for="race" id="race_label">Race</label> 
+			<select id="race" name="race" class="w3-select">
+				<option value="AmericanIndianOrAlaskaNative" id="alaskan">American Indian or Alaska Native</option>
+				<option value="Asian" id="asian">Asian</option>
+				<option value="BlackOrAfricanAmerican" id="black">Black or African American</option>
+				<option value="NativeHawaiianOrOtherPacificIslander" id="hawaiian">Native Hawaiian or Other Pacific Islander</option>
+				<option value="White" id="white">White</option>
+				<option value="DemographicRaceTwoOrMoreRaces" id="multiple">Two or more races</option>
+				<option value="RaceAndEthnicityUnknown" id="unknown">Unknown</option>
+			</select>
+			<label for="hispanic" id="hispanic_label">Hispanic/Latino</label> 
+			<input type="checkbox" name="hispanic" id="hispanic">
+		</div>
+		<div>
+			<label for="disability" id="disability_label">Disability</label> 
+			<select id="disability" name="disability" class="w3-select">
+				<option value="00" id="none">No disability</option>
+				<option value="01" id="blind">Blind or Visual Impairment</option>
+				<option value="02" id="cp">Cerebral Palsy</option>
+				<option value="03" id="chronic">Chronic Illness</option>
+				<option value="04" id="deaf">Deafness or Hearing Impairment</option>
+				<option value="05" id="addict">Drug or Alcohol Addiction</option>
+				<option value="06" id="psychological">Emotionally/Psychologically Disabled</option>
+				<option value="07" id="seizure">Epilepsy or Seizure Disorders</option>
+				<option value="08" id="intellectual">Intellectual Disability</option>
+				<option value="09" id="orthopedic">Orthopedic Impairment</option>
+				<option value="10" id="learning">Specific learning disability</option>
+				<option value="11" id="speach">Speech or Language impairment</option>
+				<option value="99" id="other">Other type of impairment</option>
+			</select>
+		</div>
+		<div class="w3-card">
+			<label for="economic" id="economic_label">Economically Disadvantaged</label> 
+			<input type="checkbox" name="economic" id="economic">
+			<label for="homeless" id="homeless_label">Experiencing Homelessness</label> 
+			<input type="checkbox" name="homeless" id="homeless">
+		</div>
+		<div class="w3-card">
+			<label for="location" id="location_label">Location</label>
+			<input type="text" name="location" placeholder=".e.g. Tulsa, OK" id="location" required>
+			<input type="button" value="Use my current location" onClick="getLocation();">
+		</div>
+		<div>
+			<input type="submit" name="submit" value="Get Help" id="help_submit" class="w3-btn">
+		</div>
+	</div>
 </form>
 <script type="module">
 	import * as d3 from "https://cdn.skypack.dev/d3@7";
 	
 	const div = d3.selectAll("div");
 </script>
-<script src="{{url_for('static', filename='js/visualize.js')}}">
-</script>
+<script src="{{url_for('static', filename='js/visualize.js')}}"></script>
+<script src="{{url_for('static', filename='js/locate.js')}}"></script>
 </body>
 </html>

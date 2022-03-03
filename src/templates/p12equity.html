@@ -8,11 +8,21 @@
 <meta name="generator" content="BBEdit 14.1" />
 </head>
 <body class="w3-light-grey">
+<header>
+<img src="{{url_for('static', filename='img/US-DeptOfEducation-Seal.png')}}" alt="US Department of Education seal" role="banner">
 <h1>Preschool to Grade 12 Education Equity Data Explorer</h1>
+</header>
 <p id="overview" class="w3-text-dark-grey">
 Displays a variety of data on equitable access to education for students from preschool to the 12<sup>th</sup> grade.
 </p>
-
+<form action="/get_equity_stats" method="POST" name="equity_in_area">
+<div class="w3-card">
+	<label for="location" id="location_label">Location</label>
+	<input type="text" name="location" placeholder=".e.g. Tulsa, OK" id="location" required>
+	<input type="button" value="Use my current location" onClick="getLocation();">
+</div>
+<input type="submit" name="submit" value="Go" id="equity_submit" class="w3-btn">
+</form>
 <script type="module">
 
 import * as d3 from "https://cdn.skypack.dev/d3@7";
@@ -21,5 +31,6 @@ const div = d3.selectAll("div");
 
 </script>
 <script src="{{url_for('static', filename='js/visualize.js')}}"></script>
+<script src="{{url_for('static', filename='js/locate.js')}}"></script>
 </body>
 </html>
