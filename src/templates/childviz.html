@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{% block title %}Help a child visualization{% endblock %}
+<p id="overview">
+	Chart showing visualizations relevant to the characteristics selected for a child. 
+</p>
+<div id="layout">
+	<div id="container">
+		<svg  width="90%" viewbox=" 0 0 1000 600"/>
+	</div>
+</div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="{{url_for('static', filename='js/visualize.js')}}"></script>
+<script>
+    const sample = [
+      {
+        metric: 'Complete High School',
+        value: 78.9,
+        national: 75.2,
+        peer: 77,
+        regional: 81
+      },
+      {
+        metric: 'Enroll in Higher Education',
+        value: 76.1,
+        national: 70.5,
+        peer: 79,
+        regional: 84
+      }
+    ];
+	displayVerticalBarChart(sample)
+</script>
+
+{% endblock %}

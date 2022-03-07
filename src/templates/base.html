@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+	<title>{% block title %} P-12 Platform {% endblock %}</title>
+<!-- Start EDWeb Metadata - Do Not Modify Tags in Block Below -->
+<!-- End EDWeb Metadata - Do Not Modify Tags in Block Above -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="IE=edge" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- CSS -->
+    <link href="{{url_for('static', filename='css/ed-bootstrap.css')}}" rel="stylesheet" media="screen">
+    <link href="{{url_for('static', filename='css/common.css')}}" rel="stylesheet" media="screen">
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="{{url_for('static', filename='js/html5shiv.js')}}"></script>
+  <script src="{{url_for('static', filename='js/respond.min.js')}}"></script>
+<![endif]-->
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery.js')}}"></script>
+<script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+</head>
+
+<body>
+<!--stopindex-->
+<div id="container" class="container">
+
+<div id="header">
+
+<div class="row branding">
+<div id="logo">
+<div class="col-sm-7 hidden-xs">
+<hgroup>
+<a href="/" title="US Department of Education" rel="home"><img alt="US Department of Education" src="{{url_for('static', filename='img/ed-gov-hat.png')}}" width="75" height="75"></a>
+<p>U.S. Department of Education</p>
+<a href="#skipnav"><img src="{{url_for('static', filename='img/spacer.gif')}}" alt="Skip main navigation." width="1" height="1" hspace="0" vspace="0" border="0"></a>
+</hgroup>
+
+</div>
+</div><!-- /#logo -->
+
+<!-- 
+<div id="searchbox">
+				<div class="col-sm-5">
+<form accept-charset="UTF-8" action="https://findit.ed.gov/search" method="get" id="search_form" role="search">
+		<label class="sr-only" for="query">Search for:</label>
+		<div class="input-group">
+ 		<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div> 
+ 		<input id="affiliate" name="affiliate" type="hidden" value="ed.gov" /> 
+ 		<input type="search" placeholder="Search..." id="query" value="" name="query" autocomplete="off" class="form-control usagov-search-autocomplete" style="width:100%">
+		    <span class="input-group-btn"><button value="Search" id="searchsubmit" type="submit" class="btn btn-primary" style="height:34px;"><span class="glyphicon glyphicon-search"></span></button></span>
+		</div>
+	</form>
+</div>
+</div><!~~ /#searchbox ~~>
+ -->
+</div><!-- /.row-->
+
+<!-- 
+<div id="audiences">
+ 	           	<nav class="navbar navbar-inverse main-navigation" role="navigation">
+  <!~~ Brand and toggle get grouped for better mobile display ~~>
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <p class="navbar-text visible-xs"><a href="https://www.ed.gov/" class="navbar-link">U.S. Department of Education</a></p>
+  </div>
+
+  <!~~ Collect the nav links, forms, and other content for toggling ~~>
+  <div class="collapse navbar-collapse navbar-main-collapse">
+    <ul class="nav navbar-nav" style="width:100%;">
+	  <li class="col-sm-3"><a href="topic1.html?src=pn">Topic 1</a></li>
+	  <li class="col-sm-3"><a href="topic2.html?src=pn">Topic 2</a></li>
+	  <li class="col-sm-3"><a href="topic3.html?src=pn">Topic 3</a></li>
+	  <li class="col-sm-3"><a href="topic4.html?src=pn">Topic 4</a></li>
+    </ul>
+  </div><!~~ /.navbar-collapse ~~>
+</nav>				
+</div><!~~ /#audiences ~~>
+ -->
+</div><!-- /#header -->
+
+<!--startindex-->
+<div id="maincontent" class="content">
+<!-- 
+<a name="skipnav"></a>
+ -->
+
+<!-- 
+<h1>Page Title</h1>
+
+[content]
+ -->
+{% block content %} {% endblock %}
+
+<hr>
+<p class="lastModified">Last Modified: {{ mtime }}</p>
+
+<!-- end main content area -->
+        <!--stopindex-->
+
+</div><!--/#maincontent-->
+
+
+</div><!--/#container -->
+
+<!--GOOGLE ANALYTICS CODE-->
+<!-- END GOOGLE ANALYTICS CODE-->
+
+
+</body>
+</html>
+

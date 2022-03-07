@@ -1,27 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<title>Help a child</title>
-	<link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/w3.css')}}" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="generator" content="BBEdit 14.1" />
-</head>
-<body class="w3-light-grey">
-<header>
-	<img src="{{url_for('static', filename='img/US-DeptOfEducation-Seal.png')}}" alt="US Department of Education seal" role="banner"> 
-	<h1>
-		Help a child 
-	</h1>
-</header>
-<p id="overview" class="w3-text-dark-grey">
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{% block title %}Help a child{% endblock %}
+<p id="overview">
 	Describe the child to help in the preschool to grade 12 age range, then click the Get Help button to see related statistics and recommendations. 
 </p>
 <form action="/get_stats" method="POST" name="child_description">
-	<div id="characteristics" class="w3-container w3-blue-grey w3-text-light-grey">
-		<div class="w3-card">
+	<div id="characteristics" class="background1 primary-palette">
+		<div>
 			<label for="age" id="age_label">Age</label> 
-			<select id="age" name="age" class="w3-select">
+			<select id="age" name="age">
 				<option value="4">4</option>
 				<option value="5">5</option>
 				<option value="6">6</option>
@@ -38,7 +28,7 @@
 				<option value="17">17</option>
 				<option value="18">18</option>
 			</select>
-			<div class="w3-card">
+			<div>
 				<label for="gender" id="gender_label">Gender</label> 
 				<input type="radio" id="female" name="gender" value="Female">
 				<label for="female">Female</label> 
@@ -48,7 +38,7 @@
 				<label for="unspecified">Unspecified</label> 
 			</div>
 			<label for="grade" id="grade_label">Grade</label> 
-			<select id="grade" name="grade" class="w3-select">
+			<select id="grade" name="grade">
 				<option value="preschool" id="preschool">Preschool</option>
 				<option value="kindergarden" id="kindergarden">Kindergarden</option>
 				<option value="1" id="1">Grade 1</option>
@@ -65,9 +55,9 @@
 				<option value="12" id="12">Grade 12</option>
 			</select>
 		</div>
-		<div class="w3-card">
+		<div>
 			<label for="race" id="race_label">Race</label> 
-			<select id="race" name="race" class="w3-select">
+			<select id="race" name="race">
 				<option value="AmericanIndianOrAlaskaNative" id="alaskan">American Indian or Alaska Native</option>
 				<option value="Asian" id="asian">Asian</option>
 				<option value="BlackOrAfricanAmerican" id="black">Black or African American</option>
@@ -81,7 +71,7 @@
 		</div>
 		<div>
 			<label for="disability" id="disability_label">Disability</label> 
-			<select id="disability" name="disability" class="w3-select">
+			<select id="disability" name="disability">
 				<option value="00" id="none">No disability</option>
 				<option value="01" id="blind">Blind or Visual Impairment</option>
 				<option value="02" id="cp">Cerebral Palsy</option>
@@ -97,19 +87,19 @@
 				<option value="99" id="other">Other type of impairment</option>
 			</select>
 		</div>
-		<div class="w3-card">
+		<div>
 			<label for="economic" id="economic_label">Economically Disadvantaged</label> 
 			<input type="checkbox" name="economic" id="economic">
 			<label for="homeless" id="homeless_label">Experiencing Homelessness</label> 
 			<input type="checkbox" name="homeless" id="homeless">
 		</div>
-		<div class="w3-card">
+		<div>
 			<label for="location" id="location_label">Location</label>
 			<input type="text" name="location" placeholder=".e.g. Tulsa, OK" id="location" required>
 			<input type="button" value="Use my current location" onClick="getLocation();">
 		</div>
 		<div>
-			<input type="submit" name="submit" value="Get Help" id="help_submit" class="w3-btn">
+			<input type="submit" name="submit" value="Get Help" id="help_submit">
 		</div>
 	</div>
 </form>
@@ -120,5 +110,5 @@
 </script>
 <script src="{{url_for('static', filename='js/visualize.js')}}"></script>
 <script src="{{url_for('static', filename='js/locate.js')}}"></script>
-</body>
-</html>
+
+{% endblock %}
