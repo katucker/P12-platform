@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<title>P-12 Show and Tell</title>
-    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/w3.css')}}"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="generator" content="BBEdit 14.1" />
-</head>
-<body class="w3-light-grey">
-<header>
-<img src="{{url_for('static', filename='img/US-DeptOfEducation-Seal.png')}}" alt="US Department of Education seal" role="banner">
-<h1>Preschool to Grade 12 Education Equity Data Explorer</h1>
-</header>
-<p id="overview" class="w3-text-dark-grey">
-Displays a variety of data on equitable access to education for students from preschool to the 12<sup>th</sup> grade.
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{% block title %}P-12 Education Equity{% endblock %}
+<p id="overview">
+Learn about educational equity, opportunity, and results from pre-K to high school.
 </p>
 <form action="/get_equity_stats" method="POST" name="equity_in_area">
-<div class="w3-card">
+<div class="background1 primary-palette">
 	<label for="location" id="location_label">Location</label>
 	<input type="text" name="location" placeholder=".e.g. Tulsa, OK" id="location" required>
 	<input type="button" value="Use my current location" onClick="getLocation();">
@@ -32,5 +23,5 @@ const div = d3.selectAll("div");
 </script>
 <script src="{{url_for('static', filename='js/visualize.js')}}"></script>
 <script src="{{url_for('static', filename='js/locate.js')}}"></script>
-</body>
-</html>
+
+{% endblock %}
