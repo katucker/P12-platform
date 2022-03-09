@@ -1,13 +1,14 @@
 // Code for interacting with visualizations in the web pages.
         
-function displayVerticalBarChart(data) {
+function displayVerticalBarChart(data, title, xaxis, yaxis) {
 
     const svg = d3.select('svg');
     const svgContainer = d3.select('#container');
     
     const margin = 80;
-    const width = 1000 - 2 * margin;
-    const height = 600 - 2 * margin;
+    bound = svg.node().getBoundingClientRect();
+    const width = bound.width - 2 * margin;
+    const height = bound.height - 2 * margin;
 
     const chart = svg.append('g')
       .attr('transform', `translate(${margin}, ${margin})`);
@@ -63,26 +64,26 @@ function displayVerticalBarChart(data) {
       .attr('y', (g) => yScale(g.value))
       .attr('height', (g) => height - yScale(g.value))
       .attr('width', xScale.bandwidth())
-      .on('mouseenter', function (actual, i) {
-        d3.selectAll('.value')
-          .attr('opacity', 0)
-
-        d3.select(this)
-          .transition()
-          .duration(300)
-          .attr('opacity', 0.6)
-          .attr('x', (a) => xScale(a.metric) - 5)
-          .attr('width', xScale.bandwidth() + 10)
-
-        const y = yScale(actual.value)
-
-        line = chart.append('line')
-          .attr('id', 'limit')
-          .attr('x1', 0)
-          .attr('y1', y)
-          .attr('x2', width)
-          .attr('y2', y)
-
+//       .on('mouseenter', function (actual, i) {
+//         d3.selectAll('.value')
+//           .attr('opacity', 0)
+// 
+//         d3.select(this)
+//           .transition()
+//           .duration(300)
+//           .attr('opacity', 0.6)
+//           .attr('x', (a) => xScale(a.metric) - 5)
+//           .attr('width', xScale.bandwidth() + 10)
+// 
+//         const y = yScale(actual.value)
+// 
+//         line = chart.append('line')
+//           .attr('id', 'limit')
+//           .attr('x1', 0)
+//           .attr('y1', y)
+//           .attr('x2', width)
+//           .attr('y2', y)
+// 
 //         barGroups.append('text')
 //           .attr('class', 'divergence')
 //           .attr('x', (a) => xScale(a.metric) + xScale.bandwidth() / 2)
@@ -98,22 +99,22 @@ function displayVerticalBarChart(data) {
 // 
 //             return idx !== i ? text : '';
 //           })
-
-      })
-      .on('mouseleave', function () {
-        d3.selectAll('.value')
-          .attr('opacity', 1)
-
-        d3.select(this)
-          .transition()
-          .duration(300)
-          .attr('opacity', 1)
-          .attr('x', (a) => xScale(a.metric))
-          .attr('width', xScale.bandwidth())
-
-        chart.selectAll('#limit').remove()
+// 
+//       })
+//       .on('mouseleave', function () {
+//         d3.selectAll('.value')
+//           .attr('opacity', 1)
+// 
+//         d3.select(this)
+//           .transition()
+//           .duration(300)
+//           .attr('opacity', 1)
+//           .attr('x', (a) => xScale(a.metric))
+//           .attr('width', xScale.bandwidth())
+// 
+//         chart.selectAll('#limit').remove()
 //         chart.selectAll('.divergence').remove()
-      })
+//       })
 
     barGroups 
       .append('text')
@@ -130,22 +131,40 @@ function displayVerticalBarChart(data) {
       .attr('y', margin / 2.4)
       .attr('transform', 'rotate(-90)')
       .attr('text-anchor', 'middle')
-      .text('Percentage')
+      .text(yaxis)
 
     svg.append('text')
       .attr('class', 'label')
       .attr('x', width / 2 + margin)
       .attr('y', height + margin * 1.7)
       .attr('text-anchor', 'middle')
-      .text('Metrics')
+      .text(xaxis)
 
     svg.append('text')
       .attr('class', 'title')
       .attr('x', width / 2 + margin)
       .attr('y', 40)
       .attr('text-anchor', 'middle')
-      .text('Metrics for selected characteristics')
+      .text(title)
 
   
+}
+
+function toggleBarValues(cb) {
+	if (cb.checked) {
+		adjustment = 5
+	} else {
+		adjustment = -5
+	}
+	height = d3.select('svg').node().getBoundingClientRect().height - 160;
+	console.log(height)
+	yScale = d3.scaleLinear()
+      .range([height, 0])
+      .domain([0, 100]);
+    barGroup = d3.selectAll('.bar')
+    			.transition()
+          		.duration(300)
+      			.attr('y', (g) => yScale(g.value += adjustment))
+          		.attr('height', (g) => height - yScale(g.value))
 }
 

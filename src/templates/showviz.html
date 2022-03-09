@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{% block title %}Show and Tell visualization{% endblock %}
+<p id="overview">
+	Education metrics for: {{ location }} 
+</p>
+<div id="layout">
+	<div id="container">
+		<svg  id="metric1" width="90%" viewbox=" 0 0 1000 600"/>
+	</div>
+</div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="{{url_for('static', filename='js/visualize.js')}}"></script>
+<script>
+    const teacher_student_ratio = [
+      {
+        metric: '{{ location }}',
+        value: 78.9,
+        national: 75.2,
+        peer: 77,
+        regional: 81
+      },
+      {
+        metric: 'National',
+        value: 73.6,
+        national: 77.5,
+        peer: 74,
+        regional: 76
+      },
+      {
+        metric: 'Peer school districts',
+        value: 77.4,
+        national: 79.5,
+        peer: 78,
+        regional: 79
+      },
+      {
+        metric: 'Neighboring school districts',
+        value: 66.1,
+        national: 68.0,
+        peer: 65,
+        regional: 67
+      }
+    ];
+	displayVerticalBarChart(teacher_student_ratio, "Metrics", "Averages", "Teacher/student ratio")
+</script>
+
+{% endblock %}

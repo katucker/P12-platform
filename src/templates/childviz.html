@@ -5,12 +5,20 @@
 
 <h1>{% block title %}Help a child visualization{% endblock %}
 <p id="overview">
-	Chart showing visualizations relevant to the characteristics selected for a child. 
+	For a child with the characteristics below, the chart shows the probability that child will achieve the listed outcomes. 
 </p>
+<div id="characteristics">
+<p>{{ characteristics }}</p>
+</div>
 <div id="layout">
 	<div id="container">
 		<svg  width="90%" viewbox=" 0 0 1000 600"/>
 	</div>
+</div>
+<div id="programs">
+<p>See how the outcomes change if the child participates in </p>
+<label for="stay" id="stay_label">Stay in school<input type="checkbox" name="stay" id="stay" onclick="toggleBarValues(this)"/></label><br>
+<label for="food" id="food_label">Free or reduced price lunch<input type="checkbox" name="food" id="food" onclick="toggleBarValues(this)"/></label>
 </div>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="{{url_for('static', filename='js/visualize.js')}}"></script>
@@ -24,6 +32,27 @@
         regional: 81
       },
       {
+        metric: 'Pass math assessments',
+        value: 73.6,
+        national: 77.5,
+        peer: 74,
+        regional: 76
+      },
+      {
+        metric: 'Pass language assessments',
+        value: 77.4,
+        national: 79.5,
+        peer: 78,
+        regional: 79
+      },
+      {
+        metric: 'Frequently miss classes',
+        value: 66.1,
+        national: 68.0,
+        peer: 65,
+        regional: 67
+      },
+      {
         metric: 'Enroll in Higher Education',
         value: 76.1,
         national: 70.5,
@@ -31,7 +60,7 @@
         regional: 84
       }
     ];
-	displayVerticalBarChart(sample)
+	displayVerticalBarChart(sample, 'Metrics for selected characteristics','Metrics','Percentage')
 </script>
 
 {% endblock %}
