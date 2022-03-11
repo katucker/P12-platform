@@ -5,7 +5,7 @@
 
 <h1>{% block title %}Help a child visualization{% endblock %}
 <p id="overview">
-	For a child with the characteristics below, the chart shows the probability that child will achieve the listed outcomes. 
+	Percentage children with the characteristics below that achieve the listed outcomes. 
 </p>
 <div id="characteristics">
 <p>{{ characteristics }}</p>
@@ -15,10 +15,16 @@
 		<svg  width="90%" viewbox=" 0 0 1000 600"/>
 	</div>
 </div>
+<div id="compare">
+<p>Compare to the midpoint</p>
+<input type="checkbox" name="national" id="national" onclick="toggleReferenceLines(this,'national')"/><label for="national" id="national_label">Nationwide</label><br>
+<input type="checkbox" name="peer" id="peer" onclick="toggleReferenceLines(this,'peer')"/><label for="peer" id="peer_label">Among school districts with similar characteristics</label><br>
+<input type="checkbox" name="regional" id="regional" onclick="toggleReferenceLines(this,'regional')"/><label for="regional" id="regional_label">Among neighboring school districts</label><br>
+</div>
 <div id="programs">
 <p>See how the outcomes change if the child participates in </p>
-<label for="stay" id="stay_label">Stay in school<input type="checkbox" name="stay" id="stay" onclick="toggleBarValues(this)"/></label><br>
-<label for="food" id="food_label">Free or reduced price lunch<input type="checkbox" name="food" id="food" onclick="toggleBarValues(this)"/></label>
+<input type="checkbox" name="stay" id="stay" onclick="toggleBarValues(this)"/><label for="stay" id="stay_label">Head Start</label><br>
+<input type="checkbox" name="food" id="food" onclick="toggleBarValues(this)"/><label for="food" id="food_label">Free or reduced price lunch</label>
 </div>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="{{url_for('static', filename='js/visualize.js')}}"></script>
@@ -29,35 +35,54 @@
         value: 78.9,
         national: 75.2,
         peer: 77,
-        regional: 81
+        regional: 8,
+		headstart: 4,
+		lunch: 3        
       },
       {
         metric: 'Pass math assessments',
         value: 73.6,
         national: 77.5,
         peer: 74,
-        regional: 76
+        regional: 76,
+        headstart: 5,
+        lunch: 1
       },
       {
         metric: 'Pass language assessments',
         value: 77.4,
         national: 79.5,
         peer: 78,
-        regional: 79
+        regional: 79,
+        headstart: 2,
+        lunch: 0
       },
       {
         metric: 'Frequently miss classes',
-        value: 66.1,
+        value: 36.1,
+        national: 43.0,
+        peer: 39,
+        regional: 37,
+        headstart: -8,
+        lunch: -10
+      },
+      {
+        metric: 'Complete a FAFSA Application',
+        value: 69.7,
         national: 68.0,
         peer: 65,
-        regional: 67
+        regional: 67,
+        headstart: 11,
+        lunch: 0
       },
       {
         metric: 'Enroll in Higher Education',
         value: 76.1,
         national: 70.5,
         peer: 79,
-        regional: 84
+        regional: 84,
+        headstart: 14,
+        lunch: 2
       }
     ];
 	displayVerticalBarChart(sample, 'Metrics for selected characteristics','Metrics','Percentage')
