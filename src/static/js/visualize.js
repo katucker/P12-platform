@@ -6,12 +6,17 @@ function displayVerticalBarChart(data, title, xaxis, yaxis) {
     const svgContainer = d3.select('#container');
     
     const margin = 80;
-    bound = svg.node().getBoundingClientRect();
-    const width = bound.width - 2 * margin;
-    const height = bound.height - 2 * margin;
+    const width = 1000 - 2 * margin;
+    const height = 600 - 2 * margin;
+    const extension = 10;
+    
+    // Set height and width attributes for easy reference in other functions.
+    svg.attr("height", height)
+    svg.attr("width", width)
 
     const chart = svg.append('g')
-      .attr('transform', `translate(${margin}, ${margin})`);
+      .attr('transform', `translate(${margin}, ${margin})`)
+      .attr("class", "chart");
 
     const xScale = d3.scaleBand()
       .range([0, width])
@@ -146,25 +151,79 @@ function displayVerticalBarChart(data, title, xaxis, yaxis) {
       .attr('y', 40)
       .attr('text-anchor', 'middle')
       .text(title)
+      
+// Add all the reference lines, but make them not visible.
+	barGroups
+		.append('line')
+    	.attr("class", "nationalrefline")
+    	.attr("x1", (g) => xScale(g.metric) - extension)
+    	.attr("y1", (g) => yScale(g.national))
+   		.attr("x2", (g) => xScale(g.metric) + xScale.bandwidth() + extension)
+    	.attr("y2", (g) => yScale(g.national))
+    	.style("opacity", 0)
+    	.attr("stroke-width", 3)
 
+	barGroups
+		.append('line')
+    	.attr("class", "peerrefline")
+    	.attr("x1", (g) => xScale(g.metric) - extension)
+    	.attr("y1", (g) => yScale(g.peer))
+   		.attr("x2", (g) => xScale(g.metric) + xScale.bandwidth() + extension)
+    	.attr("y2", (g) => yScale(g.peer))
+    	.style("opacity", 0)
+    	.attr("stroke-width", 3)
   
+	barGroups
+		.append('line')
+    	.attr("class", "regionalrefline")
+    	.attr("x1", (g) => xScale(g.metric) - extension)
+    	.attr("y1", (g) => yScale(g.regional))
+   		.attr("x2", (g) => xScale(g.metric) + xScale.bandwidth() + extension)
+    	.attr("y2", (g) => yScale(g.regional))
+    	.style("opacity", 0)
+    	.attr("stroke-width", 3)
 }
 
-function toggleBarValues(cb) {
-	if (cb.checked) {
-		adjustment = 5
-	} else {
-		adjustment = -5
-	}
-	height = d3.select('svg').node().getBoundingClientRect().height - 160;
-	console.log(height)
+function toggleBarValues(cb, prog) {
+	height = 600-160;
 	yScale = d3.scaleLinear()
       .range([height, 0])
       .domain([0, 100]);
-    barGroup = d3.selectAll('.bar')
-    			.transition()
-          		.duration(300)
-      			.attr('y', (g) => yScale(g.value += adjustment))
-          		.attr('height', (g) => height - yScale(g.value))
+	barGroup = d3.selectAll('.bar');
+	curdata = barGroup.data();
+	if (cb.checked) {
+		if (prog === "headstart") {
+			curdata.forEach( (g) => g.value += g.headstart)
+		} else {
+      		curdata.forEach( (g) => g.value += g.lunch)
+		}
+	} else {
+		if (prog === "headstart") {
+			curdata.forEach( (g) => g.value -= g.headstart)
+		} else {
+      		curdata.forEach( (g) => g.value -= g.lunch)
+		}
+	}
+	barGroup
+		.data(curdata)
+		.transition()
+        .duration(300)
+      	.attr('y', (g) => yScale(g.value))
+        .attr('height', (g) => height - yScale(g.value))
+}
+
+function toggleReferenceLines(cb, ref) {
+    if (ref === "national") {
+    	lines = d3.selectAll(".nationalrefline");
+    } else if (ref === "peer") {
+    	lines = d3.selectAll(".peerrefline");
+    } else {
+    	lines = d3.selectAll(".regionalrefline");
+    }
+	if (cb.checked) {
+    	lines.style("opacity", 1);
+	} else {
+    	lines.style("opacity", 0)
+	}
 }
 
